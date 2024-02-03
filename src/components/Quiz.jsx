@@ -27,24 +27,29 @@ function Quiz() {
     }
   }, [selectedOption, currentQuestion, score]);
 
+  // 1. useEffect, starts and cleans the timer
   useEffect(() => {
     const timer = setInterval(() => {
       if (remainingTime > 0) {
         setRemainingTime((prevTime) => prevTime - 1);
       } else {
-        handleNextQuestion();
+        handleNextQuestion(); // Go to the next question when time runs out
       }
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, [remainingTime, handleNextQuestion]);
+    // Cleanup function
+    return () => clearInterval(timer); // Clear the timer
+  }, [remainingTime, handleNextQuestion]); // Re-run when the timer is recreated or the component changes
 
+  // 2. Control for showing the result screen
   if (showResult) {
     return <Result score={score} />;
   }
 
+  // 3. Get the current question
   const currentQues = quizData[currentQuestion];
 
+  // 4. Construct the component return
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <div className="max-w-lg px-4 py-2 mx-3 bg-gray-200 rounded-xl shadow-lg">
