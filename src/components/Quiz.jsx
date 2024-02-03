@@ -51,7 +51,7 @@ function Quiz() {
         <div className="flex justify-between items-center mb-4 text-base sm:text-lg font-semibold ">
           <p>Quiz App</p>
           <p>
-            Süre: {remainingTime == 0 ? "Bitti" : `${remainingTime} saniye`}
+            Süre: {remainingTime === 0 ? "Bitti" : `${remainingTime} saniye`}
           </p>
         </div>
         <Question
